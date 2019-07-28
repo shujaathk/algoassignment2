@@ -1,0 +1,79 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+void LongestIncreasingSubsequence(int arr[], int n)
+{
+  int arr1[n];
+  int arr2[n+1];
+
+  int length = 0, newLength = 0, k = 0;
+  int first = 0, last = 0, mid = 0;
+
+  for(int i=0;i<n;i++)
+  {
+    first = 1;
+    last = length;
+
+    while(first <= last)
+    {
+      mid = ceil((first+last)/2);
+
+      if(arr[arr2[mid]] <= arr[i])
+      {
+        first = mid + 1;
+      }
+      else
+      {
+        last = mid - 1;
+      }
+    }
+
+    newLength = first;
+    arr1[i] = arr2[newLength-1];
+    arr2[newLength] = i;
+
+    if(newLength > length)
+    {
+      length = newLength;
+    }
+
+  }
+
+  int LIS[length];
+  k = arr2[length];
+
+  cout<<"\nLength of Longest Non Consecutive Increasing Subsequence: "<<length;
+
+
+  for(int i=length-1; i>=0;i--)
+  {
+    LIS[i] = arr[k];
+    k = arr1[k];
+  }
+
+  cout<<"\nLongest Non Consecutive Increasing Subsequence: ";
+  for(int i=0;i<length;i++)
+  {
+    cout<<LIS[i]<<" ";
+  }
+  cout<<"\nRunning time of Algorithm: O(nlogn)"<<endl;
+}
+
+int main()
+{
+  int size = 0;
+  cout<<"Please enter the size of the array: ";
+  cin>>size;
+
+  int arr[size];
+  cout<<"\nPlease enter the values: \n";
+  for(int i=0;i<size;i++)
+  {
+    cin>>arr[i];
+  }
+
+  LongestIncreasingSubsequence(arr, size);
+
+  return 0;
+}
