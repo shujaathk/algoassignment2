@@ -1,10 +1,19 @@
+/*
+    Author: Nouman Arshad
+    Github: @nouman0320
+    License: MIT license
+*/
+
+/// O(n^2)
+
 #include<iostream>
 #include<string>
 #include<algorithm>
 
+#define n 30
+
 using namespace std;
 
-#define n 30
 int memoTable[n][n];
 
 string findPalindrome(string str, string strReverse, int str_len, int strReverse_len)
@@ -59,7 +68,4 @@ int main()
 
   string longestPalindrome = findPalindrome(str, strReverse, str_len, str_len);
   cout<<"Longest Palindrome Subsequence: "<<longestPalindrome<<endl;
-  cout<<"Running time of Algorithm: O(n^2)"<<endl;
-
-  return 0;
 }
