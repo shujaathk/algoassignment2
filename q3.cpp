@@ -31,7 +31,8 @@ int main()
 {
   string str;
 
-  str = "character";
+  cout<<"Please enter the input string: ";
+  cin>>str;
 
   int str_len = str.length();
 
