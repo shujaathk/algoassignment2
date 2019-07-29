@@ -1,0 +1,20 @@
+we can assume that the rook is initially
+located in the lower left corner of a chessboard, whose rows and columns
+are numbered from 1 to 8. 
+
+Let P(i, j) be the number of the rook’s
+shortest paths from square (1,1) to square (i, j) in the ith row and the jth
+column, where 1 ≤ i, j ≤ 8. 
+
+Any such path will be composed of vertical
+and horizontal moves directed toward the goal. 
+
+Obviously, P(i, 1) =P(1, j)=1 for any 1 ≤ i, j ≤ 8.  
+
+In general, any shortest path to square
+(i, j) will be reached either from square (i, j − 1) or from square (i − 1, j)
+square. Hence, we have the following recurrence
+
+
+P(i, j) = P(i, j − 1) + P(i − 1, j) for 1 < i, j ≤ 8,
+P(i, 1) = P(1, j)=1 for 1 ≤ i, j ≤ 8.
