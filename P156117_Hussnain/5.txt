@@ -1,37 +1,84 @@
-/* Time complexity of this program is O(n^2). 
+/*
+Running time of Algorithm: O(nlogn)
 
-Created by MUHAMMAD HUSSNAIN JAVED on 29/07/2019. */
+Created by MUHAMMAD HUSSNAIN JAVED on 29/7/2019 */
 
 #include<iostream>
-#include<stdio.h>
+#include<math.h>
 using namespace std;
 
-int MAXIMUMFIND( int arr[], int n )
+void LongestIncreasingSubsequence(int arr[], int n)
 {
-    int temp[n];
-    
-    temp[0] = 1;
-    for (int i = 1; i < n; i++ )
+  int arr1[n];
+  int arr2[n+1];
+
+  int length = 0, newLength = 0, k = 0;
+  int first = 0, last = 0, mid = 0;
+
+  for(int i=0;i<n;i++)
+  {
+    first = 1;
+    last = length;
+
+    while(first <= last)
     {
-        temp[i] = 1;
-        for (int j = 0; j < i; j++ )
-            if ( arr[i] > arr[j] && temp[i] < temp[j] + 1)
-            {
-                temp[i] = temp[j] + 1;
-               printf("%d \n",arr[i] );
-                
-            }
-        //printf("%d ", arr[i]);
+      mid = ceil((first+last)/2);
+
+      if(arr[arr2[mid]] <= arr[i])
+      {
+        first = mid + 1;
+      }
+      else
+      {
+        last = mid - 1;
+      }
     }
-    
-    // Return maximum value in temp[]
-    return *max_element(temp, temp+n);
+
+    newLength = first;
+    arr1[i] = arr2[newLength-1];
+    arr2[newLength] = i;
+
+    if(newLength > length)
+    {
+      length = newLength;
+    }
+
+  }
+
+  int LIS[length];
+  k = arr2[length];
+
+  cout<<"\nLength of Longest Non Consecutive Increasing Subsequence: "<<length;
+
+
+  for(int i=length-1; i>=0;i--)
+  {
+    LIS[i] = arr[k];
+    k = arr1[k];
+  }
+
+  cout<<"\nLongest Non Consecutive Increasing Subsequence: ";
+  for(int i=0;i<length;i++)
+  {
+    cout<<LIS[i]<<" ";
+  }
+
 }
 
 int main()
 {
-    int arr[] = { 10, 22, 9, 33, 50, 41, 60 };
-    int n = sizeof(arr)/sizeof(arr[0]);
-    printf("Length of temp is %d\n", MAXIMUMFIND(arr,n));
-    return 0;
+  int size = 0;
+  cout<<"Please enter the size of the array: ";
+  cin>>size;
+
+  int arr[size];
+  cout<<"\nPlease enter the values: \n";
+  for(int i=0;i<size;i++)
+  {
+    cin>>arr[i];
+  }
+
+  LongestIncreasingSubsequence(arr, size);
+
+  return 0;
 }
