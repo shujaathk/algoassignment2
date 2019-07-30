@@ -1,6 +1,6 @@
 /* Time complexity of this program is O(n^2). 
 
-Created by Anas MUHAMMAD HUSSNAIN JAVED on 29/07/2019. */
+Created by MUHAMMAD HUSSNAIN JAVED on 29/07/2019. */
 
 #include<iostream>
 #include<stdio.h>
